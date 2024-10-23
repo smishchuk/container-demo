@@ -46,3 +46,10 @@ To https://gitea.adl.nubes.ru/smishchuk/container-demo.git
 branch 'master' set up to track 'origin/master'.
 
 root@dat-n-smishch1 MINGW64 /d/wwwroot/container-demo (master)
+
+
+2024-10-23 13:38:24
+$ git remote set-url origin https://github.com/smishchuk/container-demo.git
+$ git branch -M master
+$ git push -u origin master
+

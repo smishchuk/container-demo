@@ -132,7 +132,7 @@
 			bundleVersion: "42.6.0",
 			connectionString: "jdbc:postgresql://localhost:5432/cmdb-prod",
 			username: "appserver",
-			password: "encrypted:32d8bd3b0609b261d018082e5481a7299318f66993949bf0489d1d529559240d26c8df6c9c55495e93bec433bbfb3cb8796304839812cea0",
+			password: "encrypted:*********************",
 			
 			// optional settings
 			connectionLimit:5, // default:-1
