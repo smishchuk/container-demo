@@ -12,8 +12,8 @@
   	<cfset this.sessiontimeout=CreateTimeSpan(0, 0, 120, 0)/>
   	<cfset this.setclientcookies="No"/>
   
-	<cfset this.datasource = "testds"/><!--- default datasource name --->
-	<cfset getDS(this.datasource,this.datasource)/><!--- datasource name, environment variable prefix without "_" --->
+	<cfset this.datasource = "anketa"/><!--- default datasource name --->
+	<cfset getDS(this.datasource,"cfconfig_datasources_#this.datasource#")/><!--- datasource name, environment variable prefix without "_" --->
 		
     <!--- Define the page request properties. --->
     <cfsetting
@@ -48,7 +48,7 @@
 		<cfset setEncoding("URL", "UTF-8")>
 	
 		<!--- global settings --->
-		<cfset request.APP_VERSION="0.00.000"/><!---2024-10-13 15:26:10--->		
+		<cfset request.APP_VERSION="0.00.001"/><!---2024-10-13 15:26:10--->		
 		<cflock scope="application" type="readonly" timeout=3>
 			<cfset request.DS=this.datasource/>
 			<cfset request.APP_NAME=this.Name/>
@@ -109,7 +109,7 @@
         access="private"
         returntype="void"
         output="false"
-        hint="Configure data source from environment variables. Convention: data source name is an environment varialble prefix">
+        hint="Configure data source from environment variables">
 		
 		<cfargument name="dsname" type="string" required="true"/>
 		<cfargument name="prefix" type="string" default=#dsname#/>
@@ -117,7 +117,7 @@
 		<cfset system = createObject("java", "java.lang.System")/>
 		<cfset var ds={}/>
 		
-		<cfloop list="class,connectionString,database,driver,host,port,type,url,username,password,bundleName,bundleVersion,connectionLimit,liveTimeout,validate" item="field">
+		<cfloop list="class,connectionString,database,driver,dbdriver,host,port,type,url,username,password,bundleName,bundleVersion,connectionLimit,liveTimeout,validate" item="field"><!--- driver vs dbdriver --->
 			<cfset var value=system.getEnv("#arguments.prefix#_#field#")/>
 			<cfif isDefined("value") AND len(value)>
 				<cfset structInsert(ds,field,value)/>
